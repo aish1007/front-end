@@ -2,6 +2,10 @@
 
 Frontend for displaying last five League of Legends matches played by a user.
 
+## Prerequisites
+
+Create env file with REACT_APP_BACK_END_URL="****"
+
 ## Available Scripts
 
 In the project directory, you can run:
