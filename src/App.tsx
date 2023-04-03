@@ -17,7 +17,7 @@ function App() {
 
 
   return (
-    <div className="App bg-[#283040]">
+    <div className="App bg-[#28303f]">
       <div className="App flex  justify-center p-10">
       <input className="border border-1 border-black mx-10 w-64" value={summonerName} onChange={(e) => setSummonerName(e.target.value)} /> 
       <button
@@ -33,14 +33,14 @@ function App() {
             { matchHistory ?
               <>
               {matchHistory.matches.map((matchEl : MatchStatistics) => (
-                <tr className={`border rounded-sm  ${matchEl.win ? ' bg-red-900 ' : 'bg-[#283040]'}`} >
+                <tr className={`border rounded-sm  ${matchEl.win ? 'bg-[#283040]': ' bg-red-900 '}`} >
                   {/**
                    * First column
                    */}
                   <td className="p-10">
                     <p className={`font-bold  ${matchEl.win ? 'text-red-500 ' : 'text-blue-500'}`}> {matchEl.championName}</p>
                     <br/>
-                    <p>{matchEl.win ?  'Victory' : 'Defeat'}</p>
+                    <b>{matchEl.win ?  'Victory' : 'Defeat'}</b>
                     <p className="text-[#9596aa]">{matchEl.duration.minutes}m : {matchEl.duration.seconds}s</p>
                     <p className="text-[#9596aa]">{matchEl.gameDate}</p>
                   </td>
