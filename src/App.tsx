@@ -1,7 +1,7 @@
 import  { AxiosResponse } from 'axios';
 import { useState } from 'react';
 import './App.css';
-import { Matches } from './types/Match';
+import { Matches, MatchStatistics } from './types/Match';
 import axios from "./request/index"
 
 function App() {
@@ -26,6 +26,64 @@ function App() {
       >
         View results
       </button>
+    </div>
+    <div className="flex justify-center mx-20">
+    <table className="w-full overflow-auto text-sm text-left border-separate  border-spacing-y-1 bg-white">
+          <tbody>
+            { matchHistory ?
+              <>
+              {matchHistory.matches.map((matchEl : MatchStatistics) => (
+                <tr className={`border rounded-sm  ${matchEl.win ? ' bg-red-900 ' : 'bg-[#283040]'}`} >
+                  {/**
+                   * First column
+                   */}
+                  <td className="p-10">
+                    <p className={`font-bold  ${matchEl.win ? 'text-red-500 ' : 'text-blue-500'}`}> {matchEl.championName}</p>
+                    <br/>
+                    <p>{matchEl.win ?  'Victory' : 'Defeat'}</p>
+                    <p className="text-[#9596aa]">{matchEl.duration.minutes}m : {matchEl.duration.seconds}s</p>
+                    <p className="text-[#9596aa]">{matchEl.gameDate}</p>
+                  </td>
+
+                   {/**
+                   * Second column
+                   */}
+                  <td className="p-10">
+                    <div className="flex flex-wrap"></div>
+                    <img src={matchEl.profileImg} alt="profile-icon" className="border rounded-full w-24 h-24" />
+                  </td>
+
+                  {/**
+                   * Third column
+                   */}
+                  <td className="p-10 text-[#9596aa]">
+                   <p className="font-bold">Kill: {matchEl.kills}</p>
+                   <p className="font-bold">Death: {matchEl.deaths}</p>
+                   <p className="font-bold">Assist: {matchEl.assists}</p>
+                  </td>
+                   {/**
+                   * Fourth column
+                   */}
+                  <td className="p-10 text-[#9596aa]">
+                   <p className="font-bold">Championship Level: {matchEl.champLevel}</p>
+                  </td>
+                   {/**
+                   * Fifth column
+                   */}
+                  <td className="p-10 flex flex-row flex-wrap">
+                   {matchEl?.items?.map((image) => (
+                     <img src={image.img} alt={image.name} className="rounded-full h-12 w-12 p-2" />
+                   ))}
+                  </td>
+                </tr>
+              ))}
+              </>
+            : null }
+
+          </tbody>
+
+        </table>
+    
     </div>
     </div>
   );
